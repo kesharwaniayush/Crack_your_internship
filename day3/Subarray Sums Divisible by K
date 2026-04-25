@@ -1,0 +1,22 @@
+int subarraysDivByK(int* nums, int numsSize, int k) {
+     int* remainderCount = (int*)calloc(k, sizeof(int));
+    int cumulativeSum = 0, result = 0;
+    
+  
+    remainderCount[0] = 1;
+
+    for (int i = 0; i < numsSize; i++) {
+        cumulativeSum += nums[i];
+        
+  
+        int remainder = ((cumulativeSum % k) + k) % k;
+
+  
+        result += remainderCount[remainder];
+        
+        remainderCount[remainder]++;
+    }
+
+    free(remainderCount);
+    return result;
+}
