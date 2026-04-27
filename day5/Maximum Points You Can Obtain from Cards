@@ -1,0 +1,18 @@
+int maxScore(int* cardPoints, int cardPointsSize, int k) {
+     int current_sum = 0;
+    for (int i = 0; i < k; i++) {
+        current_sum += cardPoints[i];
+    }
+    
+    int max_sum = current_sum;
+    
+  
+    for (int i = 0; i < k; i++) {
+        current_sum = current_sum - cardPoints[k - 1 - i] + cardPoints[cardPointsSize - 1 - i];
+        if (current_sum > max_sum) {
+            max_sum = current_sum;
+        }
+    }
+    
+    return max_sum;
+}
